@@ -10,6 +10,16 @@ import java.util.StringJoiner;
 
 public class ColumnRefactorTask {
 
+    public String joinRow(String[] tab){
+        StringJoiner sj = new StringJoiner(",");
+        for(String s:tab) {
+            if(s != null)
+                sj.add(s);
+        }
+        return String.valueOf(sj);
+    }
+
+
     public static void main(String[] args) {
         checkArgument(args.length > 1, "Please provide the path of input file and output dir as parameters.");
         new ColumnRefactorTask().run(args[0], args[1]);
@@ -30,27 +40,22 @@ public class ColumnRefactorTask {
 
         List<String> rows = textFile.collect();
         List<String> newRows = new ArrayList<>();
-        for (String name: rows
+        for (String row: rows
              ) {
-            String [] a = name.split(",");
+            String [] a = row.split(",");
             if(a[a.length - 1].endsWith("\""))
             {
                 a[a.length-2] = a[a.length-2]+'.'+a[a.length-1];
                 a[a.length-1] = null;
-                StringJoiner sj = new StringJoiner(",");
-                for(String s:a) {
-                    if(s != null)
-                    sj.add(s);
-                }
-                newRows.add(String.valueOf(sj));
+
+                newRows.add(joinRow(a));
             }
             else if(a[a.length - 1].equals("C")) {
                 a[a.length - 1] = "0";
-                StringJoiner sj = new StringJoiner(",");
-                for(String s:a) sj.add(s);
-                newRows.add(String.valueOf(sj));
+
+                newRows.add(joinRow(a));
             }else{
-                newRows.add(name);
+                newRows.add(row);
             }
 
         }
