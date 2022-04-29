@@ -19,6 +19,9 @@ public class ColumnRefactorTask {
     public void run(String inputFilePath, String outputDir) {
 
         String master = "local[*]";
+        /**
+         * Don't forget to remove the setMaster config when you want to try it in the clusterZ
+         */
         SparkConf conf = new SparkConf()
                 .setAppName(ColumnRefactorTask.class.getName())
         .setMaster(master);
