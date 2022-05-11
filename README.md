@@ -1,7 +1,18 @@
-# bigdata-pipeline
+# Bigdata Pipeline
+
 
 ### Goal :
-Create a pipeline that could support streaming/batch processing using hbase as database, spark for processing and hadoop hdfs as datalake:
+Create a pipeline that could support streaming/batch processing and store in a datalake:
+
+### Prerequisite and Tools
+
+- Docker  
+- Apache Hbase 
+- Apache kafka
+- Apache Hadoop
+- Java 
+- Intellij
+
 
 ### Architecture
 
