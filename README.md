@@ -1,7 +1,7 @@
 # bigdata-pipeline
 
 ### Goal :
-Create a pipeline that could support streaming/batch processing using habse as database, spark for processing and hadoop hdfs as datalake:
+Create a pipeline that could support streaming/batch processing using hbase as database, spark for processing and hadoop hdfs as datalake:
 
 ### Architecture
 
