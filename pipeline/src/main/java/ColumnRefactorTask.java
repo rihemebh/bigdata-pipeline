@@ -27,15 +27,16 @@ public class ColumnRefactorTask {
 
 
     public static void main(String[] args) {
-        checkArgument(args.length > 1, "Please provide the path of input file as parameters.");
+        checkArgument(args.length > 0, "Please provide the path of input file as parameters.");
         new ColumnRefactorTask().run(args[0]);
     }
 
 
     public void run(String inputFilePath) {
-
+        String master = "local[*]";
         SparkConf conf = new SparkConf()
                 .setAppName(ColumnRefactorTask.class.getName());
+                //.setMaster(master);
         JavaSparkContext sc = new JavaSparkContext(conf);
         JavaRDD<String> textFile = sc.textFile(inputFilePath);
 
@@ -43,21 +44,16 @@ public class ColumnRefactorTask {
         List<String> newRows = new ArrayList<>();
         for (String row : rows
         ) {
-            String[] a = row.split(",");
-            if (a[a.length - 1].endsWith("\"")) {
-                a[a.length - 2] = a[a.length - 2] + '.' + a[a.length - 1];
-                a[a.length - 1] = null;
 
-                newRows.add(joinRow(a));
-            } else if (a[a.length - 1].equals("C")) {
-                a[a.length - 1] = "0";
+            String[] tokens = row.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+            tokens[8] = tokens[8].replace("\"","");
+            tokens[8] = tokens[8].replace(",","");
+            tokens[8] = tokens[8].replace("C","0");
 
-                newRows.add(joinRow(a));
-            } else {
-                newRows.add(row);
-            }
+            newRows.add(joinRow(tokens));
 
         }
+
 
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092");
@@ -81,7 +77,6 @@ public class ColumnRefactorTask {
         for (String newRow : newRows) {
             producer.send(new ProducerRecord<String, String>(TOPIC_NAME,
                     newRow));
-
         }
         System.out.println("Dataset sent seccussfully");
         producer.close();
