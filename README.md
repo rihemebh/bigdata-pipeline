@@ -6,7 +6,7 @@ Create a pipeline that could support streaming/batch processing using hbase as d
 ### Architecture
 
 
-<img src="https://github.com/rihemebh/bigdata-pipeline/blob/main/bigdata1.png" /> 
+<img src="https://github.com/rihemebh/bigdata-pipeline/blob/main/bigdata.png" /> 
 
 
 ### Explain it
