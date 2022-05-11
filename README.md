@@ -32,3 +32,8 @@ Create a pipeline that could support streaming/batch processing and store in a d
 
 
 <img src="https://github.com/rihemebh/bigdata-pipeline/blob/main/exec.png" /> 
+
+References: 
+
+- https://spark.apache.org/docs/latest/rdd-programming-guide.html
+- https://insatunisia.github.io/TP-BigData/
