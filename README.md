@@ -30,8 +30,13 @@ Create a pipeline that could support streaming/batch processing and store in a d
 
 ### Execution results : 
 
-
 <img src="https://github.com/rihemebh/bigdata-pipeline/blob/main/exec.png" /> 
+
+
+<img src="https://github.com/rihemebh/bigdata-pipeline/blob/main/spark-operations-1.png" /> 
+
+
+<img src="https://github.com/rihemebh/bigdata-pipeline/blob/main/spartk-operations-2.png" /> 
 
 References: 
 
