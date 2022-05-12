@@ -26,6 +26,7 @@ Create a pipeline that could support streaming/batch processing and store in a d
 - Send dataset lines through kafka producer 
 - Consume these data
 - Store it in hbase
+- execute spark operations 
 
 
 ### Execution results : 
